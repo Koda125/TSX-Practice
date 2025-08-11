@@ -1,0 +1,15 @@
+.input-fields{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.task-input{
+    padding-right: 10px;
+}
+
+.intro-prompt{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
