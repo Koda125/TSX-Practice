@@ -12,9 +12,9 @@ function App() {
       <header className='app-header'>
         <Header />
       </header>
-      <body>
+      <div>
         <Main />
-      </body>
+      </div>
       
     </>
   )

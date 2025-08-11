@@ -8,8 +8,21 @@ type Todo = {
 
 function Main(){
     const [ addItem, setAddItem ] = useState<string>("");
-    const [ todo, setTodo ] = useState<Todo[]>([]);
-    
+    const [ date, setDate ] = useState<number>()
+    const [ todo, setTodo ] = useState<Todo[]>([{
+        item: "Hello World",
+        date: Date.now()
+    }]);
+    function addToList(newItem: string, newDate: number){
+        console.log("Adding to the list!")
+        setTodo(prev => [
+            ...prev,
+            {item: newItem,
+            date: newDate
+            }
+        ])
+        console.log("Here is the list so far: ", todo)
+    }
 
     return(
         <>
@@ -18,11 +31,23 @@ function Main(){
             </div>
             <div className="input-fields">
                 <div className="task-input">
-                    <input placeholder="task to complete" size={27}></input>
+                    <input placeholder="task to complete" size={27} onChange={(e)=>{setAddItem(e.target.value)}}></input>
+                </div>
+                <div className="complete-by-input">
+                <input placeholder="complete by?" size={27} type="date" onChange={(e)=>{setDate(e.target.value)}}></input>
                 </div>
                 <div>
-                <input placeholder="complete by?" size={27}></input>
+                    <button onClick={()=>{addToList(addItem, date)}}>Add to List</button>
                 </div>
+            </div>
+            <div>
+                {todo.map((newItem) => (
+                    <div>
+                        <p>{newItem.item}</p>
+                        <p>{newItem.date}</p>
+                    </div>
+                ))}
+               
             </div>
         </>
     )
