@@ -9,10 +9,7 @@ type Todo = {
 function Main(){
     const [ addItem, setAddItem ] = useState<string>("");
     const [ date, setDate ] = useState<number>()
-    const [ todo, setTodo ] = useState<Todo[]>([{
-        item: "Hello World",
-        date: Date.now()
-    }]);
+    const [ todo, setTodo ] = useState<Todo[]>([]);
     function addToList(newItem: string, newDate: number){
         console.log("Adding to the list!")
         setTodo(prev => [
