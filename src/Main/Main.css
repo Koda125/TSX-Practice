@@ -17,3 +17,28 @@
 .complete-by-input{
     padding-right: 10px;
 }
+
+.todo-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .todo-table th,
+  .todo-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  .todo-table th {
+    
+    font-weight: bold;
+  }
+  
+  .todo-table tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  

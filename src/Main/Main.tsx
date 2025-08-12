@@ -4,18 +4,21 @@ import './Main.css'
 type Todo = {
     item: string;
     date: number;
+    completed: boolean;
 }
 
 function Main(){
     const [ addItem, setAddItem ] = useState<string>("");
     const [ date, setDate ] = useState<number>()
     const [ todo, setTodo ] = useState<Todo[]>([]);
+    const [ isCompleted, setIsCompleted ] = useState<boolean>(false);
     function addToList(newItem: string, newDate: number){
         console.log("Adding to the list!")
         setTodo(prev => [
             ...prev,
             {item: newItem,
-            date: newDate
+            date: newDate,
+            completed: false
             }
         ])
         console.log("Here is the list so far: ", todo)
@@ -38,13 +41,30 @@ function Main(){
                 </div>
             </div>
             <div>
-                {todo.map((newItem) => (
-                    <div>
-                        <p>{newItem.item}</p>
-                        <p>{newItem.date}</p>
-                    </div>
-                ))}
-               
+                <table className="todo-table">
+                    <thead>
+                    <tr>
+                        <th>Task to complete</th>
+                        <th>Date to complete by</th>
+                        <th>Completed?</th>
+                    </tr>
+                    </thead>
+                    {todo.map((newItem) => (
+                        <tbody>
+                        <tr>
+                            <th>{newItem.item}</th>
+                            <th>{newItem.date}</th>
+                            <th 
+                            //The following onclick allows the creation of a new object inside the array and verifies it to the newItem, before flipping the completed boolean.
+                            onClick={()=>{setTodo(prev => prev.map(todo => todo === newItem ? { ...todo, completed: !todo.completed } : todo))}}>
+                                {newItem.completed ? "✅" : "❌"}</th>
+                        </tr>
+                        </tbody>    
+                                
+                            
+                        
+                    ))}
+                </table>
             </div>
         </>
     )
