@@ -11,7 +11,7 @@ function Main(){
     const [ addItem, setAddItem ] = useState<string>("");
     const [ date, setDate ] = useState<number>()
     const [ todo, setTodo ] = useState<Todo[]>([]);
-    const [ isCompleted, setIsCompleted ] = useState<boolean>(false);
+   
     function addToList(newItem: string, newDate: number){
         console.log("Adding to the list!")
         setTodo(prev => [
@@ -47,6 +47,7 @@ function Main(){
                         <th>Task to complete</th>
                         <th>Date to complete by</th>
                         <th>Completed?</th>
+                        <th>Delete?</th>
                     </tr>
                     </thead>
                     {todo.map((newItem) => (
@@ -55,9 +56,16 @@ function Main(){
                             <th>{newItem.item}</th>
                             <th>{newItem.date}</th>
                             <th 
-                            //The following onclick allows the creation of a new object inside the array and verifies it to the newItem, before flipping the completed boolean.
+                            //The following onclick allows the creation of a new array and verifies it to the newItem, before flipping the completed boolean.
                             onClick={()=>{setTodo(prev => prev.map(todo => todo === newItem ? { ...todo, completed: !todo.completed } : todo))}}>
-                                {newItem.completed ? "✅" : "❌"}</th>
+                                {newItem.completed ? "✅" : "❌"}
+                            </th>
+                            <th>
+                                <button onClick={() => setTodo(prev => prev.filter(todo => todo.date !== newItem.date))}>
+                                    Delete
+                                </button>
+                            </th>
+
                         </tr>
                         </tbody>    
                                 

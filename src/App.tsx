@@ -9,6 +9,7 @@ function App() {
 
   return (
     <>
+      <title>TSX Pracitce APP</title>
       <header className='app-header'>
         <Header />
       </header>
